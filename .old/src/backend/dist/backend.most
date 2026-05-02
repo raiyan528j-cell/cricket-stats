@@ -1,0 +1,67 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type MatchId__543136929 = Text;
+type Match__901782627 =
+  {
+    date : Timestamp__301639476;
+    id : MatchId__543136929;
+    teamA : Text;
+    teamB : Text
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type PerformanceId__665686479 = Text;
+type Performance__373277506 =
+  {
+    id : PerformanceId__665686479;
+    matchId : MatchId__543136929;
+    playerId : PlayerId__52807076;
+    runs : Nat;
+    wickets : Nat
+  };
+type PlayerId__52807076 = Text;
+type PlayerRole__681423815 = {#allRounder; #batter; #bowler};
+type Player__814555281 =
+  {
+    country : Text;
+    id : PlayerId__52807076;
+    name : Text;
+    role : PlayerRole__681423815
+  };
+type Timestamp__301639476 = Int;
+type UserRole__1073662873 = {#admin; #guest; #user};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1073662873>
+    };
+  stable matches :
+    {
+      var root : Node__46230540<MatchId__543136929, Match__901782627>;
+      var size : Nat__490723111
+    };
+  stable perfCounterRef : {var value : Nat};
+  stable performances :
+    {
+      var blockIndex : Nat__490723111;
+      var blocks : [var [var ?Performance__373277506]];
+      var elementIndex : Nat__490723111
+    };
+  stable playerCounterRef : {var value : Nat};
+  stable players :
+    {
+      var root : Node__46230540<PlayerId__52807076, Player__814555281>;
+      var size : Nat__490723111
+    }
+};

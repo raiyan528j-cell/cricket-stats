@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "General Sans";
+    --font-mono: "Geist Mono";
+    --radius: 0.625rem;
+
+    --background: 0.99 0.005 260;
+    --foreground: 0.15 0.01 260;
+    --card: 1.0 0.0 0;
+    --card-foreground: 0.15 0.01 260;
+    --popover: 1.0 0.0 0;
+    --popover-foreground: 0.15 0.01 260;
+
+    --primary: 0.68 0.18 55;
+    --primary-foreground: 0.98 0.005 55;
+
+    --secondary: 0.95 0.01 260;
+    --secondary-foreground: 0.25 0.01 260;
+    --muted: 0.95 0.01 260;
+    --muted-foreground: 0.5 0.01 260;
+
+    --accent: 0.65 0.16 50;
+    --accent-foreground: 0.98 0.005 50;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 25;
+
+    --border: 0.9 0.01 260;
+    --input: 0.9 0.01 260;
+    --ring: 0.68 0.18 55;
+
+    --chart-1: 0.65 0.22 40;
+    --chart-2: 0.6 0.12 185;
+    --chart-3: 0.4 0.07 227;
+    --chart-4: 0.83 0.19 84;
+    --chart-5: 0.77 0.19 70;
+
+    --sidebar: 0.98 0 0;
+    --sidebar-foreground: 0.15 0 0;
+    --sidebar-primary: 0.35 0 0;
+    --sidebar-primary-foreground: 0.98 0 0;
+    --sidebar-accent: 0.95 0 0;
+    --sidebar-accent-foreground: 0.25 0 0;
+    --sidebar-border: 0.9 0 0;
+    --sidebar-ring: 0.35 0 0;
+  }
+
+  .dark {
+    --background: 0.13 0.015 260;
+    --foreground: 0.92 0.01 260;
+    --card: 0.17 0.018 260;
+    --card-foreground: 0.92 0.01 260;
+    --popover: 0.2 0.02 260;
+    --popover-foreground: 0.92 0.01 260;
+
+    --primary: 0.72 0.17 50;
+    --primary-foreground: 0.13 0.015 50;
+
+    --secondary: 0.21 0.018 260;
+    --secondary-foreground: 0.82 0.01 260;
+    --muted: 0.21 0.018 260;
+    --muted-foreground: 0.52 0.012 260;
+
+    --accent: 0.7 0.16 45;
+    --accent-foreground: 0.13 0.015 45;
+
+    --destructive: 0.55 0.2 25;
+    --destructive-foreground: 0.92 0.01 25;
+
+    --border: 0.26 0.02 260;
+    --input: 0.26 0.02 260;
+    --ring: 0.72 0.17 50;
+
+    --chart-1: 0.72 0.17 50;
+    --chart-2: 0.65 0.16 240;
+    --chart-3: 0.68 0.14 110;
+    --chart-4: 0.75 0.15 85;
+    --chart-5: 0.6 0.18 330;
+
+    --sidebar: 0.18 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.8 0 0;
+    --sidebar-primary-foreground: 0.145 0 0;
+    --sidebar-accent: 0.22 0 0;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.28 0 0;
+    --sidebar-ring: 0.8 0 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
+  }
+  html {
+    overflow-x: hidden;
+  }
+}
+
+@layer utilities {
+  @font-face {
+    font-family: "Space Grotesk";
+    src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "General Sans";
+    src: url("/assets/fonts/GeneralSans.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Geist Mono";
+    src: url("/assets/fonts/GeistMono.woff2") format("woff2");
+    font-display: swap;
+  }
+
+  /* Medal badge utilities */
+  .medal-gold {
+    background: linear-gradient(
+      135deg,
+      oklch(var(--accent)) 0%,
+      oklch(0.68 0.14 55) 100%
+    );
+    box-shadow: 0 0 12px oklch(var(--accent) / 0.4), inset 0 1px 2px
+      rgba(255, 255, 255, 0.15);
+  }
+
+  .medal-silver {
+    background: linear-gradient(
+      135deg,
+      oklch(0.75 0.06 260) 0%,
+      oklch(0.68 0.04 260) 100%
+    );
+    box-shadow: 0 0 12px oklch(0.75 0.06 260 / 0.3), inset 0 1px 2px
+      rgba(255, 255, 255, 0.1);
+  }
+
+  .medal-bronze {
+    background: linear-gradient(
+      135deg,
+      oklch(0.62 0.14 30) 0%,
+      oklch(0.55 0.12 30) 100%
+    );
+    box-shadow: 0 0 12px oklch(0.62 0.14 30 / 0.3), inset 0 1px 2px
+      rgba(255, 255, 255, 0.1);
+  }
+
+  .card-elevated {
+    box-shadow: 0 4px 12px oklch(0 0 0 / 0.08), 0 2px 4px oklch(0 0 0 / 0.04);
+  }
+
+  .card-elevated-dark {
+    box-shadow: 0 8px 24px oklch(0 0 0 / 0.2), 0 4px 8px oklch(0 0 0 / 0.1);
+  }
+
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-fade {
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .transition-elevation {
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s
+      cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

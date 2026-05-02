@@ -1,0 +1,21 @@
+{
+  "overview": "A full-stack cricket stats platform where fans browse player performance, leaderboards, and profiles — while admins manage players and match data from a secure dashboard.",
+  "features": [
+    "Home page with gold/silver/bronze top 3 players by runs and wickets",
+    "Players directory with search and card layout",
+    "Player profile with aggregated stats, last 5 performances, and runs chart",
+    "Leaderboard with tabs for top runs, wickets, and best average",
+    "Secure admin panel with login, player CRUD, and performance entry",
+    "All stats calculated dynamically — no stored totals"
+  ],
+  "category": "sports-analytics",
+  "tags": [
+    "cricket",
+    "stats",
+    "leaderboard",
+    "sports",
+    "admin",
+    "dark-theme"
+  ],
+  "last_updated": "2026-05-02T07:14:36.523Z"
+}

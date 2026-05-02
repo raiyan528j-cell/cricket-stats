@@ -1,0 +1,94 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UpdatePlayerInput = 
+ record {
+   country: opt text;
+   name: opt text;
+   role: opt PlayerRole;
+ };
+type Timestamp = int;
+type PlayerSummary = 
+ record {
+   country: text;
+   id: PlayerId;
+   matchCount: nat;
+   name: text;
+   role: PlayerRole;
+   totalRuns: nat;
+   totalWickets: nat;
+ };
+type PlayerRole = 
+ variant {
+   allRounder;
+   batter;
+   bowler;
+ };
+type PlayerId = text;
+type PlayerDetail = 
+ record {
+   average: float64;
+   country: text;
+   id: PlayerId;
+   last5Performances: vec PerformanceSummary;
+   matchCount: nat;
+   name: text;
+   role: PlayerRole;
+   strikeRate: float64;
+   totalRuns: nat;
+   totalWickets: nat;
+ };
+type PerformanceSummary = 
+ record {
+   date: Timestamp;
+   matchId: MatchId;
+   runs: nat;
+   wickets: nat;
+ };
+type PerformanceId = text;
+type MatchId = text;
+type LeaderboardType = 
+ variant {
+   average;
+   runs;
+   wickets;
+ };
+type LeaderboardEntry = 
+ record {
+   player: PlayerSummary;
+   rank: nat;
+   statValue: float64;
+ };
+type CreatePlayerInput = 
+ record {
+   country: text;
+   name: text;
+   role: PlayerRole;
+ };
+type AddPerformanceInput = 
+ record {
+   date: Timestamp;
+   matchId: MatchId;
+   playerId: PlayerId;
+   runs: nat;
+   teamA: text;
+   teamB: text;
+   wickets: nat;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addPerformance: (input: AddPerformanceInput) -> (PerformanceId);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createPlayer: (input: CreatePlayerInput) -> (PlayerId);
+  deletePlayer: (playerId: PlayerId) -> (bool);
+  getCallerUserRole: () -> (UserRole) query;
+  getLeaderboard: (leaderboardType: LeaderboardType) ->
+   (vec LeaderboardEntry) query;
+  getPlayer: (playerId: PlayerId) -> (opt PlayerDetail) query;
+  isCallerAdmin: () -> (bool) query;
+  listPlayers: () -> (vec PlayerSummary) query;
+  updatePlayer: (playerId: PlayerId, input: UpdatePlayerInput) -> (bool);
+}
